@@ -138,9 +138,10 @@ table.t td.num { font-family: var(--mono); text-align: right; white-space: nowra
 .rm ul { margin: 0; padding-left: 18px; font-size: 13.5px; }
 .rm .btn { margin-top: auto; align-self: flex-start; }
 /* wiring */
-#wiresvg { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
-#wiresvg text { font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
-#wiresvg .bt { font-weight: 700; font-size: 12px; }
+#wiresvg, #powersvg { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+#wiresvg text, #powersvg text { font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+#wiresvg .bt, #powersvg .bt { font-weight: 700; font-size: 12px; }
+#power .pl { margin: 12px 0 0; }
 
 /* fit form */
 .form { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px 10px; }
@@ -157,7 +158,7 @@ ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column
     <h1>MeshCore phone: build manual</h1>
     <p>A dedicated LoRa mesh messenger built from a cheap phone, a XIAO radio and three 3D-printed parts. Pick your phone and version, buy the parts with one cart link, then follow the steps.</p>
     <nav class="toc" aria-label="Sections">
-      <a href="#top">Choose</a><a href="#ready">Ready-made</a><a href="#build">Build</a><a href="#buy">Buy</a><a href="#print">Print</a><a href="#wiring">Wiring</a><a href="#use">Use</a><a href="#fit">Other phones</a>
+      <a href="#top">Choose</a><a href="#power">Charging</a><a href="#ready">Ready-made</a><a href="#build">Build</a><a href="#buy">Buy</a><a href="#print">Print</a><a href="#wiring">Wiring</a><a href="#use">Use</a><a href="#fit">Other phones</a>
     </nav>
   </header>
 
@@ -204,6 +205,13 @@ ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column
         <dl class="facts" id="facts"></dl>
       </div>
     </div>
+  </section>
+
+  <section class="card" id="power">
+    <h2>How the phone charges</h2>
+    <p class="lead" id="powerlead"></p>
+    <svg id="powersvg" viewBox="0 0 780 316" role="img" aria-label="Power flow diagram"></svg>
+    <ul class="plain pl" id="powerlist"></ul>
   </section>
 
   <section class="card" id="ready">
@@ -748,6 +756,76 @@ ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column
     $('rmnote').innerHTML = per > ref.price ? 'A ready-made <a href="#ready">' + esc(ref.name) + '</a> is $' + Math.round(ref.price) + (bat ? ' with a battery that charges the phone.' : '.') + ' Cheaper than building at this quantity.' : '';
   }
 
+  /* ---------- how the phone charges ---------- */
+  function drawPower() {
+    var bat = state.ver !== 'phone', small = cell() === 'small', h = '';
+    var C = { pos: cssVar('--w-pos'), sig: cssVar('--w-sig'), ink: cssVar('--ink'), box: cssVar('--box'), muted: cssVar('--muted') };
+    function box(x, y, w, hh, title, sub, col) {
+      h += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + hh + '" rx="6" fill="' + C.box + '" stroke="' + (col || C.ink) + '" stroke-width="1.2"/>';
+      h += '<text class="bt" x="' + (x + 8) + '" y="' + (y + 17) + '">' + title + '</text>';
+      (sub || []).forEach(function (s, i) { h += '<text x="' + (x + 8) + '" y="' + (y + 33 + i * 14) + '" style="fill:' + C.muted + '">' + s + '</text>'; });
+    }
+    function head(from, to, col) {
+      var dx = Math.sign(to[0] - from[0]), dy = Math.sign(to[1] - from[1]), s = 6, a = s * 1.6;
+      var p1 = dx ? [to[0] - dx * a, to[1] - s] : [to[0] - s, to[1] - dy * a], p2 = dx ? [to[0] - dx * a, to[1] + s] : [to[0] + s, to[1] - dy * a];
+      h += '<polygon points="' + to.join(',') + ' ' + p1.join(',') + ' ' + p2.join(',') + '" fill="' + col + '"/>';
+    }
+    function arrow(pts, col, both, label, lx, ly) {
+      h += '<polyline points="' + pts.map(function (p) { return p.join(','); }).join(' ') + '" fill="none" stroke="' + col + '" stroke-width="2.4" stroke-linejoin="round"/>';
+      head(pts[pts.length - 2], pts[pts.length - 1], col);
+      if (both) head(pts[1], pts[0], col);
+      if (label) h += '<text x="' + lx + '" y="' + ly + '" style="fill:' + col + '">' + label + '</text>';
+    }
+    function line(x, y, w, text) {
+      h += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="26" rx="4" fill="' + C.box + '" stroke="' + C.pos + '" stroke-width="2"/>';
+      h += '<text class="bt" text-anchor="middle" x="' + (x + w / 2) + '" y="' + (y + 17) + '" style="fill:' + C.pos + '">' + text + '</text>';
+    }
+    if (bat) {
+      box(16, 20, 150, 56, 'Solar panel', ['in the lid']);
+      box(16, 94, 150, 56, 'Wall charger', ['any USB-C, side port']);
+      box(216, 50, 150, 74, 'Charger board', ['fills the battery', 'from either source']);
+      box(416, 50, 140, 74, 'Battery', [mah(), '+ 55 °C cut-out']);
+      box(606, 50, 158, 74, '5 V boost', ['always on', 'no switch']);
+      arrow([[166, 48], [216, 70]], C.pos, false);
+      arrow([[166, 122], [216, 104]], C.pos, false);
+      arrow([[366, 87], [416, 87]], C.pos, false);
+      arrow([[556, 87], [606, 87]], C.pos, false);
+      line(216, 178, 548, 'Shared 5 V line');
+      arrow([[685, 124], [685, 178]], C.pos, false);
+      box(216, 238, 250, 74, 'Phone: charges here', ['plug board in the chin', 'CC1 → 56 kΩ → 5 V line', '= "I am a charger"'], C.sig);
+      box(514, 238, 250, 74, 'Radio (XIAO + Wio)', ['power only, from the line', 'the app talks over Bluetooth']);
+      arrow([[341, 204], [341, 238]], C.pos, false, '≤ 0.5 A, only when needed', 351, 226);
+      arrow([[639, 204], [639, 238]], C.pos, false);
+    } else {
+      box(16, 20, 200, 56, 'Charger (optional)', ['any USB-C charger', 'plugged into the side port']);
+      box(276, 20, 200, 56, 'Socket board + diode', ['the diode stops power', 'flowing back out']);
+      arrow([[216, 48], [276, 48]], C.pos, false);
+      line(16, 130, 748, 'Shared 5 V line');
+      arrow([[376, 76], [376, 130]], C.pos, false);
+      box(16, 196, 340, 98, 'Phone (plug board in the chin)', ['Mode switch moves the CC1 wire:', 'USE: 5.1 kΩ to GND, phone powers line', 'CHARGE: 22 kΩ to line, line charges phone'], C.sig);
+      box(424, 196, 340, 98, 'Radio (XIAO + Wio)', ['power only, from the line', 'the app talks over Bluetooth', 'off if neither phone nor charger powers it']);
+      arrow([[186, 156], [186, 196]], C.pos, true, 'USE: phone → line · CHARGE: line → phone', 196, 182);
+      arrow([[594, 156], [594, 196]], C.pos, false);
+    }
+    $('powersvg').innerHTML = h;
+    $('powerlead').textContent = bat
+      ? 'Everything runs from one shared 5 V line. The phone’s own USB-C port is the only connection to it, through a small plug board in the case’s bottom end. There is no switch: the phone is always on the charging side.'
+      : 'Everything runs from one shared 5 V line, and the phone’s own USB-C port is the only connection to it, through a small plug board in the case’s bottom end. With no battery, the one switch decides whether the phone feeds the line or the line feeds the phone.';
+    var items = bat ? [
+      'The solar panel and a charger in the side port fill the battery. The charger board manages both, so use either or both.',
+      'The battery feeds a 5 V boost that is always on. It puts 5 V on the shared line, which runs the radio and charges the phone.',
+      'A 56 kΩ resistor from the plug’s CC1 wire to that line tells the phone it is plugged into a charger. That is the whole trick: the phone then takes power in and never tries to power the radio.',
+      'The phone takes only what it needs (about 0.5 A at most, slow but cool) and stops when it is full, so there is nothing to switch.',
+      'If the ' + mah() + ' battery runs flat, the radio and the phone charging stop until the lid or a charger refills it. The phone keeps running on its own battery.'
+    ] : [
+      'USE: the switch ties the plug’s CC1 wire to 5.1 kΩ to ground, which tells the phone it is plugged into a device. The phone then puts 5 V on the line and powers the radio. The phone is not charged.',
+      'CHARGE: the switch ties CC1 to 22 kΩ to the line, which tells the phone it is plugged into a charger. A charger in the side port feeds the line, charges the phone and runs the radio.',
+      'The diode on the side socket stops the phone feeding power back out of the port.',
+      'Do not leave a charger in the side port in USE: the phone will not power the radio while power is already on the line.'
+    ];
+    $('powerlist').innerHTML = items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  }
+
   /* ---------- wiring ---------- */
   function drawWiring() {
     var v = state.ver, bat = v !== 'phone';
@@ -995,11 +1073,11 @@ ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column
 
   /* ---------- boot ---------- */
   function updateAll(resetView) {
-    rebuildGeometry(); updateChoose(); updateBuy(); updateReady(); updatePrint(); drawWiring(); updateUse(); updateFalsify(); updateFit(); applyStep(resetView);
+    rebuildGeometry(); updateChoose(); updateBuy(); updateReady(); updatePrint(); drawPower(); drawWiring(); updateUse(); updateFalsify(); updateFit(); applyStep(resetView);
   }
   function resize() { if (!hasGL) return; var w = $('stage').clientWidth, h = $('stage').clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); render(); }
   if (hasGL) { if (window.ResizeObserver) new ResizeObserver(resize).observe($('stage')); else window.addEventListener('resize', resize); controls.addEventListener('change', render); }
-  function themeChanged() { applyStep(false); drawWiring(); }
+  function themeChanged() { applyStep(false); drawPower(); drawWiring(); }
   if (window.matchMedia) { var mq = window.matchMedia('(prefers-color-scheme: dark)'); (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(themeChanged); }
   new MutationObserver(themeChanged).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   initPhone(); resize(); updateAll(true);
