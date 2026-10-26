@@ -17,11 +17,10 @@ A 3D-printed case that turns an inexpensive phone into a dedicated [MeshCore](ht
 
 | Version | What charges the phone on CHARGE | Case battery | Notes |
 |---|---|---|---|
-| **Solar** | Solar lid via a 950 mAh battery | Jauch LP523450JU, 950 mAh | Same printed parts as Solar + battery |
-| **Solar + battery** | Solar lid and a wall charger via a 6000 mAh battery | Jauch LP906090JH, 6000 mAh | About one full phone charge; needs a phone at least 144.7 mm long |
+| **Solar + battery** | Solar lid and a wall charger via the case battery | Jauch LP906090JH, 6000 mAh; phones shorter than 144.7 mm take the Jauch LP523450JU, 950 mAh | About one full phone charge on the 6000 mAh battery, about a sixth on the 950 mAh one. Same printed parts either way |
 | **No solar** | A USB-C charger plugged into the side port | none | Cheapest and thinnest |
 
-Rough parts cost per unit, phone not included: Solar about $195 for one build, $94 each for 100; Solar + battery about $214 and $110; No solar about $123 and $39. The single-build prices are mostly supplies sold in packs (filament, tape, solder).
+Rough parts cost per unit, phone not included: Solar + battery about $214 for one build and $110 each for 100 ($195 and $94 with the 950 mAh battery on a short phone); No solar about $123 and $39. The single-build prices are mostly supplies sold in packs (filament, tape, solder).
 
 ## What is in this repo
 
@@ -45,19 +44,19 @@ Print in a light-coloured ASA. Each phone has five files:
 - `*_fit_test.stl`: the bottom 30 mm of the body. Print it first to check the phone plug and the pocket.
 - `*_side_test.stl`: a strip of the button-side wall. Hold your phone against it to check that the power and volume buttons sit inside the window.
 
-The `solar` files serve both solar versions. The `no_solar` files are the No solar version.
+The `solar` files serve both batteries. The `no_solar` files are the No solar version.
 
 ### Other phones
 
 The CAD takes any phone's measurements. Pick a phone in the manual to get the exact commands, or run:
 
 ```
-openscad -D 'phone="custom"' -D 'version="solar"' -D 'cell="small"' \
+openscad -D 'phone="custom"' -D 'version="solar"' -D 'cell="large"' \
   -D 'custom=[160.0, 76.0, 8.5, 9, 0, 1, 24, 60, 34, 52, 3, 3, 1]' \
   -D 'part="body"' -o body.stl cad/meshcore_onepiece.scad
 ```
 
-The `custom` list is: length, width, thickness, corner radius, USB-C offset, button side, buttons from top, button window length, camera width, camera length, camera from top, camera from edge, camera side. Repeat with `part="cap"`, `"lid"`, `"fit_test"` and `"side_test"`. Use `version="phone"` for No solar and `cell="large"` for the 6000 mAh battery.
+The `custom` list is: length, width, thickness, corner radius, USB-C offset, button side, buttons from top, button window length, camera width, camera length, camera from top, camera from edge, camera side. Repeat with `part="cap"`, `"lid"`, `"fit_test"` and `"side_test"`. Use `version="phone"` for No solar. `cell="large"` is the 6000 mAh battery; use `cell="small"` (950 mAh) for a phone shorter than 144.7 mm.
 
 ## What is not proven yet
 

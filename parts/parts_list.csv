@@ -1,29 +1,29 @@
 part,qty per build,price,price is estimate,digikey pn,where,versions,link,note
-Seeed XIAO nRF52840 + Wio-SX1262 kit (Seeed 102010710),1,13.49,,1597-102010710-ND,,"Solar, No solar, Solar + battery",https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html,"DigiKey number follows Seeed’s 1597-<part>-ND pattern, not seen directly. If DigiKey rejects it, order the kit from Seeed."
-"USB-C plug breakout, Adafruit 5978 (phone side and radio port)",2,2.95,,1528-5978-ND,,"Solar, No solar, Solar + battery",https://www.adafruit.com/product/5978,
-"SMA panel-mount to u.FL pigtail, 15 cm, Adafruit 851",1,3.95,,1528-2053-ND,,"Solar, No solar, Solar + battery",https://www.adafruit.com/product/851,
-"915 MHz SMA antenna, Linx ANT-916-CW-RH-SMA (51 mm)",1,9.23,,ANT-916-CW-RH-SMA-ND,,"Solar, No solar, Solar + battery",https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-916-CW-RH-SMA/1962849,
+Seeed XIAO nRF52840 + Wio-SX1262 kit (Seeed 102010710),1,13.49,,1597-102010710-ND,,"Solar + battery, No solar",https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html,"DigiKey number follows Seeed’s 1597-<part>-ND pattern, not seen directly. If DigiKey rejects it, order the kit from Seeed."
+"USB-C plug breakout, Adafruit 5978 (phone side and radio port)",2,2.95,,1528-5978-ND,,"Solar + battery, No solar",https://www.adafruit.com/product/5978,
+"SMA panel-mount to u.FL pigtail, 15 cm, Adafruit 851",1,3.95,,1528-2053-ND,,"Solar + battery, No solar",https://www.adafruit.com/product/851,
+"915 MHz SMA antenna, Linx ANT-916-CW-RH-SMA (51 mm)",1,9.23,,ANT-916-CW-RH-SMA-ND,,"Solar + battery, No solar",https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-916-CW-RH-SMA/1962849,
 "22 kΩ resistor, Stackpole CF14JT22K0",10,0.1,,CF14JT22K0CT-ND,,No solar,,
-"56 kΩ resistor, Stackpole CF14JT56K0 (phone charge current from the boost)",10,0.1,,CF14JT56K0CT-ND,,"Solar, Solar + battery",,DigiKey number follows the same pattern as the 22 kΩ and 5.1 kΩ parts.
-"5.1 kΩ resistor, Stackpole CF14JT5K10",10,0.1,,CF14JT5K10CT-ND,,"Solar, No solar, Solar + battery",,
-Heat-shrink tubing kit,1,9.0,yes,FP-KIT-ND,,"Solar, No solar, Solar + battery",,
-"Kapton tape, 3M 5413, 1/2 in × 5 yd",1,8.0,yes,3M10235-ND,,"Solar, No solar, Solar + battery",,
-"Solder, MG Chemicals 4880-18G, 0.8 mm",1,12.0,yes,473-1111-ND,,"Solar, No solar, Solar + battery",,
-"3M 4016 double-sided foam tape, 1/16 in (1.6 mm), 1 in × 5 yd",1,10,yes,,Amazon,"Solar, No solar, Solar + battery",https://www.amazon.com/clp/B007Y7IVEY,"For the floor, the inside of the lid and the radio mount. DigiKey lists the old 3M 9973 as obsolete, so buy this one separately; a 5 yd roll covers all of it. Any 1/16 in double-sided foam tape works."
-"Slide switch, C&K JS202011CQN, through-hole DPDT, 300 mA",1,0.6,yes,,"DigiKey, add by part no.","Solar, No solar, Solar + battery",,The one mode switch: USE (the phone powers the radio) or CHARGE (the case charges the phone and runs the radio).
-"M2 self-tapping countersunk screws for plastic: 2 × 16 mm for the cap, plus 6 lid screws (10 mm solar, 6 mm no solar)",8,8.0,yes,,McMaster-Carr or Amazon,"Solar, No solar, Solar + battery",,"They cut their own thread in the printed posts, so no inserts are needed. An M2 self-tapping assortment with 6, 10 and 16 mm covers all of them."
-Silicone wire 24 and 28 AWG (Adafruit 6181 and 3890 ribbon cables peel apart into single wires),1,6.0,yes,,Adafruit,"Solar, No solar, Solar + battery",,
-"Two-part epoxy, clear (not the silver conductive kind)",1,6.0,yes,,hardware store,"Solar, No solar, Solar + battery",,
-"ASA filament 1.75 mm, white or light grey (Polymaker or eSUN)",1,25.0,yes,,filament store,"Solar, No solar, Solar + battery",,
-"Solar charger, Adafruit 4755 (bq24074). Its USB-C is the side port",1,14.95,,1528-4755-ND,,"Solar, Solar + battery",https://www.adafruit.com/product/4755,
-"5 V boost, Adafruit PowerBoost 1000 Basic (2 A, EN cuts the output)",1,14.95,,1528-1060-ND,,"Solar, Solar + battery",https://www.adafruit.com/product/2030,
-"LiPo 950 mAh, protected, Jauch LP523450JU+PCM (52.5 × 34.8 × 5.8 mm)",1,11.11,,1908-LP523450JU+PCM+2WIRES70MM-ND,,Solar,https://www.digikey.com/en/products/detail/jauch-quartz/LP523450JU-PCM-2-WIRES-70MM/9560988,"Sits in the same pocket as the 6000 mAh cell, on a strip of the foam tape. Swap in the big battery later without reprinting."
+"56 kΩ resistor, Stackpole CF14JT56K0 (phone charge current from the boost)",10,0.1,,CF14JT56K0CT-ND,,Solar + battery,,DigiKey number follows the same pattern as the 22 kΩ and 5.1 kΩ parts.
+"5.1 kΩ resistor, Stackpole CF14JT5K10",10,0.1,,CF14JT5K10CT-ND,,"Solar + battery, No solar",,
+Heat-shrink tubing kit,1,9.0,yes,FP-KIT-ND,,"Solar + battery, No solar",,
+"Kapton tape, 3M 5413, 1/2 in × 5 yd",1,8.0,yes,3M10235-ND,,"Solar + battery, No solar",,
+"Solder, MG Chemicals 4880-18G, 0.8 mm",1,12.0,yes,473-1111-ND,,"Solar + battery, No solar",,
+"3M 4016 double-sided foam tape, 1/16 in (1.6 mm), 1 in × 5 yd",1,10,yes,,Amazon,"Solar + battery, No solar",https://www.amazon.com/clp/B007Y7IVEY,"For the floor, the inside of the lid and the radio mount. DigiKey lists the old 3M 9973 as obsolete, so buy this one separately; a 5 yd roll covers all of it. Any 1/16 in double-sided foam tape works."
+"Slide switch, C&K JS202011CQN, through-hole DPDT, 300 mA",1,0.6,yes,,"DigiKey, add by part no.","Solar + battery, No solar",,The one mode switch: USE (the phone powers the radio) or CHARGE (the case charges the phone and runs the radio).
+"M2 self-tapping countersunk screws for plastic: 2 × 16 mm for the cap, plus 6 lid screws (10 mm solar, 6 mm no solar)",8,8.0,yes,,McMaster-Carr or Amazon,"Solar + battery, No solar",,"They cut their own thread in the printed posts, so no inserts are needed. An M2 self-tapping assortment with 6, 10 and 16 mm covers all of them."
+Silicone wire 24 and 28 AWG (Adafruit 6181 and 3890 ribbon cables peel apart into single wires),1,6.0,yes,,Adafruit,"Solar + battery, No solar",,
+"Two-part epoxy, clear (not the silver conductive kind)",1,6.0,yes,,hardware store,"Solar + battery, No solar",,
+"ASA filament 1.75 mm, white or light grey (Polymaker or eSUN)",1,25.0,yes,,filament store,"Solar + battery, No solar",,
+"Solar charger, Adafruit 4755 (bq24074). Its USB-C is the side port",1,14.95,,1528-4755-ND,,Solar + battery,https://www.adafruit.com/product/4755,
+"5 V boost, Adafruit PowerBoost 1000 Basic (2 A, EN cuts the output)",1,14.95,,1528-1060-ND,,Solar + battery,https://www.adafruit.com/product/2030,
+"LiPo 950 mAh, protected, Jauch LP523450JU+PCM (52.5 × 34.8 × 5.8 mm), for phones shorter than 144.7 mm",1,11.11,,1908-LP523450JU+PCM+2WIRES70MM-ND,,Solar + battery,https://www.digikey.com/en/products/detail/jauch-quartz/LP523450JU-PCM-2-WIRES-70MM/9560988,"Only for phones too short for the 6000 mAh cell. Sits in the same pocket, on a strip of the foam tape. The printed parts are the same."
 "LiPo 6000 mAh, protected, Jauch LP906090JH+PCM (92 × 60.5 × 9.9 mm)",1,30.08,,1908-LP906090JH+PCM+2WIRES70MM-ND,,Solar + battery,https://www.digikey.com/en/products/detail/jauch-quartz/LP906090JH-PCM-2-WIRES-70MM/9560999,
-"10 kΩ thermistor, Semitec 103AT-2",1,0.68,,4316-103AT-2-ND,,"Solar, Solar + battery",,
-"JST-PH 2-pin cable, Adafruit 3814",3,0.75,,1528-2617-ND,,"Solar, Solar + battery",,
-"JST-PH 2-pin extension, Adafruit 3064 (cut for the socket side)",1,2.95,,1528-1679-ND,,"Solar, Solar + battery",,
-"Graphite heat spreader, Panasonic PGS 90 × 115 × 0.1 mm (cover with Kapton, it conducts)",1,8.0,yes,P12726-ND,,"Solar, Solar + battery",,
-"Thermal cut-out 55 °C, normally closed, Bourns AD55ABB (8 A)",1,1.83,,,Mouser 652-AD55ABB,"Solar, Solar + battery",https://www.bourns.com/data/global/pdfs/ad.pdf,
-"Solar panel, Voltaic P124 / Adafruit 5368, about 1.2 to 1.35 W (66 × 113 × 2.6 mm)",1,18.69,,1528-5368-ND,,"Solar, Solar + battery",https://www.adafruit.com/product/5368,
+"10 kΩ thermistor, Semitec 103AT-2",1,0.68,,4316-103AT-2-ND,,Solar + battery,,
+"JST-PH 2-pin cable, Adafruit 3814",3,0.75,,1528-2617-ND,,Solar + battery,,
+"JST-PH 2-pin extension, Adafruit 3064 (cut for the socket side)",1,2.95,,1528-1679-ND,,Solar + battery,,
+"Graphite heat spreader, Panasonic PGS 90 × 115 × 0.1 mm (cover with Kapton, it conducts)",1,8.0,yes,P12726-ND,,Solar + battery,,
+"Thermal cut-out 55 °C, normally closed, Bourns AD55ABB (8 A)",1,1.83,,,Mouser 652-AD55ABB,Solar + battery,https://www.bourns.com/data/global/pdfs/ad.pdf,
+"Solar panel, Voltaic P124 / Adafruit 5368, about 1.2 to 1.35 W (66 × 113 × 2.6 mm)",1,18.69,,1528-5368-ND,,Solar + battery,https://www.adafruit.com/product/5368,
 "USB-C socket breakout, Adafruit 4090 (5.1 kΩ CC built in)",1,2.95,,1528-2873-ND,,No solar,https://www.adafruit.com/product/4090,
-"Schottky diode 3 A, onsemi 1N5822G (boost output, or side socket in the phone version)",1,0.5,yes,1N5822GOS-ND,,"Solar, No solar, Solar + battery",,
+"Schottky diode 3 A, onsemi 1N5822G (boost output, or side socket in the phone version)",1,0.5,yes,1N5822GOS-ND,,"Solar + battery, No solar",,
