@@ -122,7 +122,7 @@ bst_x = 3;  bst_y = 15;
 port_y = has_bat ? chg_y + chg_port_y : 13 + rcp_l / 2;      // side USB-C opening centre (+x wall)
 port_zc = has_bat ? -foam_floor - spr_t - 0.5 - 1.6 - 1.6 : -0.5 - 1.6 - 1.65;   // USB-C centre: board hangs PCB-up, connector below the PCB
 sw_x = body_w/2 - 23;                                       // power switch, bottom wall, fixed 23 mm from the right edge for every phone
-mode_x = -(body_w/2 - 23);                                   // mode switch (charge phone / USB link to radio), mirrored on the left
+mode_x = -(body_w/2 - 23);                                   // mode switch (phone-only version), on the left
 panel_y0 = 20;                                               // panel start from the inner bottom wall
 lead_hole = [in_w / 2 + 12, panel_y0 + 4];                   // panel lead hole in the lid, near the charger
 cap_scr_y = pk_l + cap_seat / 2;                             // reference for the radio position (unchanged)
@@ -196,9 +196,9 @@ module body() {
     // side USB-C charge port, +x wall
     // sized for a cable's moulded plug (about 12.5 x 7 mm) so the plug seats fully through the 1.8 mm wall
     translate([body_w/2 - cav_wall - 1, iy0 + port_y - 6.75, max(port_zc - 3.75, z_back + 0.6)]) cube([cav_wall + 2, 13.5, min(7.5, -0.01 - max(port_zc - 3.75, z_back + 0.6))]);
-    // power switch, bottom wall (battery versions; the phone-powered radio is on whenever it has power)
-    // mode switch, bottom wall, left: DPDT slide, charge phone / USB link to the radio
-    sw_cut(mode_x);
+    // mode switch, bottom wall, left (phone-only version): the phone powers the radio, or a charger in the side port does.
+    // The battery version has no switch: its boost always runs and the phone always charges from it.
+    if (!has_bat) sw_cut(mode_x);
     // SMA bulkhead, top wall, D-flat so it cannot spin; the antenna screws on outside
     translate([sma_x, y_top - cav_wall - 1, z_back + cav_h/2]) rotate([-90, 0, 0])
       intersection() { cylinder(d = 6.5, h = cav_wall + 2); translate([-3.25, -2.9, 0]) cube([6.5, 5.8, cav_wall + 2]); }
@@ -208,7 +208,7 @@ module body() {
         cube([cav_wall + 2, 2, cav_h - 5]);
   }
   // switch seats: a 0.5 mm frame against the wall plus side cheeks, so the knob sits below the surface
-  sw_seat(mode_x);                                       // one switch: USE (phone powers the radio) / CHARGE (case charges the phone)
+  if (!has_bat) sw_seat(mode_x);                         // phone-only version: one switch, USE (phone powers the radio) / CHARGE (side-port charger)
   // cap screw posts under the top corners of the floor (the screws drive in from the front)
   intersection() {
     translate([0, 0, z_back]) linear_extrude(cav_h) outline();
@@ -274,7 +274,7 @@ module electronics() {
     translate([ix0 + in_w - rcp_w, iy0 + port_y - rcp_l/2, -0.5 - rcp_h]) cube([rcp_w, rcp_l, rcp_h]); // USB-C socket board
     translate([ix0 + in_w - rcp_w - 14, iy0 + port_y - 2, -4]) cube([10, 3.5, 3.5]);                   // Schottky diode
   }
-  for (x = [mode_x]) translate([x - msw_w/2, iy0 + sw_gap, z_back + cav_h/2 - msw_h/2]) cube([msw_w, msw_l, msw_h]); // switch bodies
+  for (x = has_bat ? [] : [mode_x]) translate([x - msw_w/2, iy0 + sw_gap, z_back + cav_h/2 - msw_h/2]) cube([msw_w, msw_l, msw_h]); // switch bodies
   translate([ix0 + 8 + xiao_w, iy0 + xiao_y + (xiao_l - pb_w)/2, -1.6 - xiao_h/2 - pb_t/2]) cube([pb_len, pb_w, pb_t]); // USB-C plug board in the radio's port
   translate([ix0 + 8, iy0 + xiao_y, -1.6 - xiao_h]) cube([xiao_w, xiao_l, xiao_h]);                // XIAO + Wio-SX1262, on 1.6 mm foam under the floor
 }

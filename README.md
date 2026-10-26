@@ -7,18 +7,17 @@ A 3D-printed case that turns an inexpensive phone into a dedicated [MeshCore](ht
 ## How it works
 
 - **Radio:** a Seeed XIAO nRF52840 with a Wio-SX1262 LoRa board, running the MeshCore Bluetooth companion firmware. A u.FL pigtail runs to an SMA socket in the top wall, so a real antenna screws on outside.
-- **Power:** the phone powers the radio through its own USB-C port. A small plug board in the case's bottom end connects the phone's port to the radio.
-- **One switch** on the bottom end:
-  - **USE:** the phone powers the radio. The phone is not charged.
-  - **CHARGE:** the case charges the phone and keeps the radio running. With Bluetooth the app stays connected in both positions.
+- **Power:** a small plug board in the case's bottom end connects the phone's USB-C port to the case.
+  - **Solar + battery:** no switch. The case battery (filled by the solar lid or any USB-C charger in the side port) runs the radio and keeps the phone charged; the phone takes only what it needs, and the app stays connected over Bluetooth. If the battery runs flat the radio stops until it is recharged.
+  - **No solar:** no battery, and one switch on the bottom end. **USE:** the phone powers the radio and is not charged. **CHARGE:** a USB-C charger in the side port charges the phone and runs the radio.
 - **Removing the phone:** the phone slides in from the top under lips along both sides and the bottom, and a screwed-on cap closes the top end. Undo the two screws on the front of the cap, lift it off and slide the phone out. The lid and electronics stay closed.
 
 ## Versions
 
-| Version | What charges the phone on CHARGE | Case battery | Notes |
+| Version | What charges the phone | Case battery | Notes |
 |---|---|---|---|
-| **Solar + battery** | Solar lid and a wall charger via the case battery | Jauch LP906090JH, 6000 mAh; phones shorter than 144.7 mm take the Jauch LP523450JU, 950 mAh | About one full phone charge on the 6000 mAh battery, about a sixth on the 950 mAh one. Same printed parts either way |
-| **No solar** | A USB-C charger plugged into the side port | none | Cheapest and thinnest |
+| **Solar + battery** | The case battery, filled by the solar lid and a wall charger; no switch | Jauch LP906090JH, 6000 mAh; phones shorter than 144.7 mm take the Jauch LP523450JU, 950 mAh | About one full phone charge on the 6000 mAh battery, about a sixth on the 950 mAh one. Same printed parts either way |
+| **No solar** | A USB-C charger plugged into the side port, with the switch on CHARGE | none | Cheapest and thinnest |
 
 Rough parts cost per unit, phone not included: Solar + battery about $214 for one build and $110 each for 100 ($195 and $94 with the 950 mAh battery on a short phone); No solar about $123 and $39. The single-build prices are mostly supplies sold in packs (filament, tape, solder).
 

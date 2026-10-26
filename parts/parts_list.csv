@@ -5,12 +5,12 @@ Seeed XIAO nRF52840 + Wio-SX1262 kit (Seeed 102010710),1,13.49,,1597-102010710-N
 "915 MHz SMA antenna, Linx ANT-916-CW-RH-SMA (51 mm)",1,9.23,,ANT-916-CW-RH-SMA-ND,,"Solar + battery, No solar",https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-916-CW-RH-SMA/1962849,
 "22 kΩ resistor, Stackpole CF14JT22K0",10,0.1,,CF14JT22K0CT-ND,,No solar,,
 "56 kΩ resistor, Stackpole CF14JT56K0 (phone charge current from the boost)",10,0.1,,CF14JT56K0CT-ND,,Solar + battery,,DigiKey number follows the same pattern as the 22 kΩ and 5.1 kΩ parts.
-"5.1 kΩ resistor, Stackpole CF14JT5K10",10,0.1,,CF14JT5K10CT-ND,,"Solar + battery, No solar",,
+"5.1 kΩ resistor, Stackpole CF14JT5K10",10,0.1,,CF14JT5K10CT-ND,,No solar,,
 Heat-shrink tubing kit,1,9.0,yes,FP-KIT-ND,,"Solar + battery, No solar",,
 "Kapton tape, 3M 5413, 1/2 in × 5 yd",1,8.0,yes,3M10235-ND,,"Solar + battery, No solar",,
 "Solder, MG Chemicals 4880-18G, 0.8 mm",1,12.0,yes,473-1111-ND,,"Solar + battery, No solar",,
 "3M 4016 double-sided foam tape, 1/16 in (1.6 mm), 1 in × 5 yd",1,10,yes,,Amazon,"Solar + battery, No solar",https://www.amazon.com/clp/B007Y7IVEY,"For the floor, the inside of the lid and the radio mount. DigiKey lists the old 3M 9973 as obsolete, so buy this one separately; a 5 yd roll covers all of it. Any 1/16 in double-sided foam tape works."
-"Slide switch, C&K JS202011CQN, through-hole DPDT, 300 mA",1,0.6,yes,,"DigiKey, add by part no.","Solar + battery, No solar",,The one mode switch: USE (the phone powers the radio) or CHARGE (the case charges the phone and runs the radio).
+"Slide switch, C&K JS202011CQN, through-hole DPDT, 300 mA",1,0.6,yes,,"DigiKey, add by part no.",No solar,,The one mode switch: USE (the phone powers the radio) or CHARGE (the case charges the phone and runs the radio).
 "M2 self-tapping countersunk screws for plastic: 2 × 16 mm for the cap, plus 6 lid screws (10 mm solar, 6 mm no solar)",8,8.0,yes,,McMaster-Carr or Amazon,"Solar + battery, No solar",,"They cut their own thread in the printed posts, so no inserts are needed. An M2 self-tapping assortment with 6, 10 and 16 mm covers all of them."
 Silicone wire 24 and 28 AWG (Adafruit 6181 and 3890 ribbon cables peel apart into single wires),1,6.0,yes,,Adafruit,"Solar + battery, No solar",,
 "Two-part epoxy, clear (not the silver conductive kind)",1,6.0,yes,,hardware store,"Solar + battery, No solar",,
