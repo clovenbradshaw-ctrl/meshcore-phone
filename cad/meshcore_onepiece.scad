@@ -108,7 +108,7 @@ y_top = pk_l + cap_seat;                                     // top end of the b
 body_l = y_top - y_bot;
 top_z = floor_t + pk_h + lip_t;
 port_z = floor_t + pk_h / 2;
-lead_y = -chin_l * 0.35;
+lead_y = y_bot + cav_wall;                                   // wire drop starts at the cavity's bottom wall, under the plug board's pad end
 in_w = body_w - 2 * cav_wall;                                // cavity interior
 in_l = body_l - 2 * cav_wall;
 ix0 = -in_w / 2; iy0 = y_bot + cav_wall;                     // cavity interior origin
@@ -171,11 +171,13 @@ module body() {
     }
     translate([-pk_w/2, pk_l, floor_t]) cube([pk_w, cap_seat + 1, top_z]);         // cap seat, open top end
     // no speaker or mic openings: the bottom end is solid apart from the plug channel
-    // plug board channel, slides in from the pocket
+    // plug board channel: a closed slot in the chin, open only at the pocket end, so the front face over the board stays solid.
+    // The board slides in from the pocket at the height of the phone's port; its plug end then stands out into the pocket.
     translate([port_x - pb_w/2 - 0.2, -(pb_len - plug_in) - 0.1, port_z - pb_t/2 - 0.2])
-      cube([pb_w + 0.4, pb_len + 0.1, top_z]);
-    // wire drop from the plug board through the shared floor into the cavity
-    translate([port_x - 9 - 2.5, lead_y - 2, -1]) cube([18 + 5, 4, port_z + 1.5]);
+      cube([pb_w + 0.4, (pb_len - plug_in) + 0.1 + 0.01, pb_t + 0.4]);
+    // wire drop through the shared floor into the cavity, under the plug board's rear end where its pads are: the board is
+    // slid in from the pocket first, then the leads are soldered to the pads from the open back
+    translate([port_x - 9 - 2.5, lead_y, -1]) cube([18 + 5, 6, port_z + 1.5]);
     // side keys, windows flare outward so a fingertip reaches the button
     mirror([key_side < 0 ? 1 : 0, 0, 0])
       translate([pk_w/2 - 1, pk_l - key_from_top - key_len, floor_t + 1])
